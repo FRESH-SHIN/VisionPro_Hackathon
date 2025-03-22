@@ -80,3 +80,5 @@ mono_crash*
 /Assets/Samples/*
 
 !/Assets/Audio/MCML/
+
+/Packages/*

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/HandGesturesAVP.unity
+    guid: ddd97ab9f7bfb4253bfcf7134b450096
+  - enabled: 1
     path: Assets/Scenes/SampleSceneUnbounded.unity
     guid: d49e913a117634cdd953337ffbb2080c
   - enabled: 0

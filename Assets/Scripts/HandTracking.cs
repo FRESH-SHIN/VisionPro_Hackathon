@@ -30,11 +30,11 @@ public class HandTracking : MonoBehaviour
     void Update()
     {
         var activeTouches = Touch.activeTouches;
-        if (activeTouches.Count > 0)
+        if (activeTouches.Count == 1)
         {
             SpatialPointerState primaryTouchData = EnhancedSpatialPointerSupport.GetPointerState(activeTouches[0]);
 
-            if (primaryTouchData.Kind == SpatialPointerKind.DirectPinch)
+            //if (primaryTouchData.Kind == SpatialPointerKind.DirectPinch)
             {
                 if (activeTouches[0].phase == TouchPhase.Began)
                 {
@@ -106,6 +106,11 @@ public class HandTracking : MonoBehaviour
             {
                 m_SelectedObject = null;
             }
+        }
+        else if(activeTouches.Count == 2)
+        {
+            Debug.Log("Two Hands");
+
         }
     }
 }

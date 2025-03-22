@@ -7,8 +7,8 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
     path: Assets/Scenes/HandGesturesAVP.unity
     guid: ddd97ab9f7bfb4253bfcf7134b450096
   - enabled: 1

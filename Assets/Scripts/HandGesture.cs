@@ -4,7 +4,7 @@ using UnityEngine.XR.Management;
 public class HandGesture : MonoBehaviour
 {
     [SerializeField] private Transform _polySpatialCameraTransform;
-
+    [SerializeField] private string targetTag = "Movable"; // 操作対象のタグ
     private XRHandSubsystem _handSubsystem;
     private XRHandJoint _rightIndexTipJoint;
     private XRHandJoint _rightThumbTipJoint;
@@ -18,6 +18,14 @@ public class HandGesture : MonoBehaviour
     private const float k_PinchThreshold = 0.02f;
     // 前フレームの両手間ピンチ距離を保持するための変数
     private float _previousPinchDistance = 0f;
+
+    private Vector3 _previousMidPoint = Vector3.zero;
+    private Vector3 _previousHandLine = Vector3.zero;
+    private bool _gestureActive = false;
+
+    // 対象オブジェクトのリスト
+    GameObject[] _targetObjects;
+    
     private void Start()
     {
         GetHandSystem();
@@ -26,6 +34,12 @@ public class HandGesture : MonoBehaviour
 
     private void Update()
     {
+        if(_targetObjects == null)
+        {
+            _targetObjects = GameObject.FindGameObjectsWithTag(targetTag);
+            Debug.Log("Target Objects counts:" + _targetObjects.Length.ToString());
+        }
+
         if (!CheckHandSubsystem()) return;
 
         XRHandSubsystem.UpdateSuccessFlags updateSuccessFlags = _handSubsystem.TryUpdateHands(XRHandSubsystem.UpdateType.Dynamic);
@@ -49,9 +63,10 @@ public class HandGesture : MonoBehaviour
         }
 
         // 両手がピンチ状態の場合、ズーム操作および回転軸の計算を実施
+// 両手がピンチ状態の場合に拡大・縮小・回転処理を実施
         if (_activeRightPinch && _activeLeftPinch)
         {
-            // 各手のピンチ位置を、インデックスとサム先端の平均位置として求める
+            // 各手のピンチ位置（インデックスとサム先端の中間点）を算出
             Vector3 rightPinchPosition = Vector3.zero;
             Vector3 leftPinchPosition = Vector3.zero;
 
@@ -67,50 +82,63 @@ public class HandGesture : MonoBehaviour
                 leftPinchPosition = (leftIndexPose.position + leftThumbPose.position) * 0.5f;
             }
 
-            // 両手の間の距離を計算
-            float currentPinchDistance = Vector3.Distance(rightPinchPosition, leftPinchPosition);
-
-            // 初回フレームの場合は前回距離を初期化
-            if (_previousPinchDistance == 0f)
-            {
-                _previousPinchDistance = currentPinchDistance;
-            }
-
-            // 一定の閾値以上の変化があれば、ズーム動作と判定
-            if (Mathf.Abs(currentPinchDistance - _previousPinchDistance) > 0.001f)
-            {
-                if (currentPinchDistance < _previousPinchDistance)
-                {
-                    Debug.Log("Zoom In Detected");
-                }
-                else if (currentPinchDistance > _previousPinchDistance)
-                {
-                    Debug.Log("Zoom Out Detected");
-                }
-            }
-
-            // 前回の距離を更新
-            _previousPinchDistance = currentPinchDistance;
-
-            // 両手の中間点を計算
+            // 両手の中間点をpivotとして使用
             Vector3 midPoint = (rightPinchPosition + leftPinchPosition) * 0.5f;
 
-            // カメラから中間点への方向ベクトル（正規化）
+            // 現在の両手間距離と手同士を結ぶ方向ベクトルを算出
+            float currentPinchDistance = Vector3.Distance(rightPinchPosition, leftPinchPosition);
+            Vector3 currentHandLine = (rightPinchPosition - leftPinchPosition).normalized;
+
+            // 両手のラインと中間点方向の外積から回転軸を求める
             Vector3 midPointDirection = (midPoint - _polySpatialCameraTransform.position).normalized;
+            Vector3 rotationAxis = Vector3.Cross(currentHandLine, midPointDirection).normalized;
 
-            // 両手のピンチ位置を結ぶ方向（正規化）
-            Vector3 handLine = (rightPinchPosition - leftPinchPosition).normalized;
+            if (!_gestureActive)
+            {
+                // 初回フレームなら前回情報を初期化
+                _previousPinchDistance = currentPinchDistance;
+                _previousHandLine = currentHandLine;
+                _gestureActive = true;
+            }
+            else
+            {
+                
 
-            // 回転軸は、手のラインとカメラ方向の外積で求める
-            Vector3 rotationAxis = Vector3.Cross(handLine, midPointDirection).normalized;
+                // スケール計算：前フレームと比較して距離の比率を倍率とする
+                float scaleFactor = currentPinchDistance / _previousPinchDistance;
 
-            Debug.Log("Rotation Axis: " + rotationAxis);
+                // 回転角は前フレームの手の方向と現在の手の方向の差分から算出
+                float rotationAngle = Vector3.SignedAngle(_previousHandLine, currentHandLine, rotationAxis);
+
+                // プレイヤーを中心（pivot）として、各対象オブジェクトに対して拡大・縮小と回転を適用
+                Vector3 pivot = _polySpatialCameraTransform.position;
+                foreach (GameObject obj in _targetObjects)
+                {
+                    // midPointを中心に拡大・縮小させる
+                    Vector3 directionFromPivot = obj.transform.position - midPoint;
+                    Vector3 scaledDirection = directionFromPivot * scaleFactor;
+                    obj.transform.position = midPoint + scaledDirection;
+                    //obj.transform.localScale *= scaleFactor;
+
+                    // // 回転処理：midpointを中心に回転させる
+                    // Quaternion deltaRotation = Quaternion.AngleAxis(rotationAngle, rotationAxis);
+                    // obj.transform.RotateAround(_polySpatialCameraTransform.position, rotationAxis, rotationAngle);
+                }
+
+                // 前フレーム情報を更新
+                _previousPinchDistance = currentPinchDistance;
+                _previousHandLine = currentHandLine;
+            }
         }
         else
         {
-            // どちらかの手がピンチ状態でなくなった場合、前回距離をリセット
+            // どちらかの手がピンチ状態でなくなったらジェスチャー終了
+            _gestureActive = false;
             _previousPinchDistance = 0f;
+            _previousHandLine = Vector3.zero;
         }
+
+
     }
 
     private void GetHandSystem()

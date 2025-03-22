@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using TMPro;
-using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 using LazyFollow = UnityEngine.XR.Interaction.Toolkit.UI.LazyFollow;
 
 namespace PolySpatial.Template

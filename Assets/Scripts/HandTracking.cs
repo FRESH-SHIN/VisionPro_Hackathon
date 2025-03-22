@@ -108,9 +108,8 @@ public class HandTracking : MonoBehaviour
             }
         }
         else if(activeTouches.Count == 2)
-        {
-            Debug.Log("Two Hands");
-
+        {   
+            m_SelectedObject = null;
         }
     }
 }

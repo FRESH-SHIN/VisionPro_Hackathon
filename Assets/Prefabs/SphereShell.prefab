@@ -64,8 +64,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 4280f0492f92a4d63af3534894b0cb2b, type: 2}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -165,8 +164,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 4280f0492f92a4d63af3534894b0cb2b, type: 2}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -213,6 +211,7 @@ GameObject:
   - component: {fileID: 7469046445636119526}
   - component: {fileID: 7788013764620408879}
   - component: {fileID: 5109271654486004638}
+  - component: {fileID: 3247906013518330092}
   m_Layer: 0
   m_Name: SphereShell
   m_TagString: Movable
@@ -275,3 +274,24 @@ MonoBehaviour:
   m_IntensityMultiplier: 1
   m_FadeInDuration: 0
   m_FadeOutDuration: 0
+--- !u!114 &3247906013518330092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637368273082595267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8193e01b2d2ad4f4a813b1e4b849e84f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 4280f0492f92a4d63af3534894b0cb2b, type: 2}
+  - {fileID: 2100000, guid: 0c49afef5a8ae4b9fbc1a95bbdb032ab, type: 2}
+  - {fileID: 2100000, guid: 1c4f685edeca14a939fee8d119d30132, type: 2}
+  - {fileID: 2100000, guid: e000b564af89240f3b31a20ee550c159, type: 2}
+  - {fileID: 2100000, guid: 763508e9af22f47bf9ba0816781c212f, type: 2}
+  objects:
+  - {fileID: 2515943265158989123}
+  - {fileID: 1328930272653135602}

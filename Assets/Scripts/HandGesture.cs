@@ -21,7 +21,7 @@ public class HandGesture : MonoBehaviour
 
     private Vector3 _previousMidPoint = Vector3.zero;
     private Vector3 _previousHandLine = Vector3.zero;
-    private bool _gestureActive = false;
+    public bool _gestureActive = false;
 
     // 対象オブジェクトのリスト
     GameObject[] _targetObjects;
@@ -91,7 +91,7 @@ public class HandGesture : MonoBehaviour
 
             // 両手のラインと中間点方向の外積から回転軸を求める
             Vector3 midPointDirection = (midPoint - _polySpatialCameraTransform.position).normalized;
-            Vector3 rotationAxis = Vector3.Cross(currentHandLine, midPointDirection).normalized;
+            Vector3 rotationAxis = _polySpatialCameraTransform.up; 
 
             if (!_gestureActive)
             {
@@ -123,6 +123,7 @@ public class HandGesture : MonoBehaviour
                     // // 回転処理：midpointを中心に回転させる
                     // Quaternion deltaRotation = Quaternion.AngleAxis(rotationAngle, rotationAxis);
                     // obj.transform.RotateAround(_polySpatialCameraTransform.position, rotationAxis, rotationAngle);
+                    obj.transform.RotateAround(pivot, rotationAxis, rotationAngle);
                 }
 
                 // 前フレーム情報を更新

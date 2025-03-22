@@ -10,6 +10,8 @@ using System;
 public class HandTracking : MonoBehaviour
 {
     GameObject m_SelectedObject;
+
+    public HandGesture handGesture;
     public float sensitivity = 1f; 
     // 最大期待 deltaAngle (ラジアン単位) 例: 0.2f (約11.5°)
     public float maxExpectedDeltaAngle = 0.2f; 
@@ -30,7 +32,7 @@ public class HandTracking : MonoBehaviour
     void Update()
     {
         var activeTouches = Touch.activeTouches;
-        if (activeTouches.Count == 1)
+        if (activeTouches.Count > 0 && !handGesture._gestureActive)
         {
             SpatialPointerState primaryTouchData = EnhancedSpatialPointerSupport.GetPointerState(activeTouches[0]);
 
@@ -106,10 +108,6 @@ public class HandTracking : MonoBehaviour
             {
                 m_SelectedObject = null;
             }
-        }
-        else if(activeTouches.Count == 2)
-        {   
-            m_SelectedObject = null;
         }
     }
 }

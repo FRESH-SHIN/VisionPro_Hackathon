@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ce80998583f4da08df89bda7198070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handGesture: {fileID: 0}
   sensitivity: 1
   maxExpectedDeltaAngle: 0.2
 --- !u!114 &47109042
@@ -735,6 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ce80998583f4da08df89bda7198070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handGesture: {fileID: 0}
   sensitivity: 1
   maxExpectedDeltaAngle: 0.2
 --- !u!114 &208071765
@@ -1670,6 +1672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ce80998583f4da08df89bda7198070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handGesture: {fileID: 0}
   sensitivity: 1
   maxExpectedDeltaAngle: 0.2
 --- !u!1 &547423345
@@ -4414,6 +4417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ce80998583f4da08df89bda7198070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handGesture: {fileID: 0}
   sensitivity: 1
   maxExpectedDeltaAngle: 0.2
 --- !u!114 &1041125225
@@ -5779,6 +5783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _polySpatialCameraTransform: {fileID: 5030769454512039458}
   targetTag: Movable
+  _gestureActive: 0
 --- !u!1001 &1274422331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7336,6 +7341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ce80998583f4da08df89bda7198070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handGesture: {fileID: 1228082428}
   sensitivity: 1
   maxExpectedDeltaAngle: 0.2
 --- !u!114 &1535587022

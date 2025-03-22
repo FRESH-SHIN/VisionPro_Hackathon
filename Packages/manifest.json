@@ -1,7 +1,8 @@
 {
   "dependencies": {
-    "com.apple.unityplugin.core": "file:/Users/sunho/Dev/unityplugins/Build/com.apple.unityplugin.core-3.1.8.tgz",
-    "com.apple.unityplugin.phase": "file:/Users/sunho/Dev/unityplugins/Build/com.apple.unityplugin.phase-1.2.5.tgz",
+    "com.apple.unityplugin.core": "file:/Users/n-lab/Downloads/Build/com.apple.unityplugin.core-3.1.8.tgz",
+    "com.apple.unityplugin.phase": "file:/Users/n-lab/Downloads/Build/com.apple.unityplugin.phase-1.2.5.tgz",
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "2.6.0",
     "com.unity.feature.development": "1.0.2",
     "com.unity.learn.iet-framework": "4.0.3",

@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "visionOSTemplate-2.1.2.sln"
+    "dotnet.defaultSolution": "APV_Hackathon.sln"
 }

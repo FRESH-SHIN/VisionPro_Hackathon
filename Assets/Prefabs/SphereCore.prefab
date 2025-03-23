@@ -126,6 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3537658645902953312}
   - component: {fileID: -2031625824195521461}
+  - component: {fileID: 3889101757052022838}
   m_Layer: 0
   m_Name: SphereCore
   m_TagString: Untagged
@@ -169,3 +170,23 @@ PositionConstraint:
   m_Sources:
   - sourceTransform: {fileID: 0}
     weight: 1
+--- !u!114 &3889101757052022838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6928823495171705892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1cda78fa6e5417fa256d708e7c8f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 2e7d7312e7f2e4f7fb5c5fc3318a9e34, type: 2}
+  - {fileID: 2100000, guid: 0fc2aaaf6410a4af7af17473871cc28d, type: 2}
+  - {fileID: 2100000, guid: 61a8a457042954ced9d3309c699383bb, type: 2}
+  - {fileID: 2100000, guid: 9e8aab2813ccd4efcbae748cca999da7, type: 2}
+  - {fileID: 2100000, guid: 1d191a9511a4940b3bbacddea675a9e9, type: 2}
+  objects:
+  - {fileID: 3218244860012318523}

@@ -47,7 +47,7 @@ SHIN：メイン機能
 Malen：メイン機能（サブ）、UI
 Onodera：3Dモデリング、UIデザイン
 Kociden：動画編集、音声収録
-Raven：その他サポート
+y-y：その他サポート
 
 ・今後の展開
 

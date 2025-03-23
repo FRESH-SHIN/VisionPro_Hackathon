@@ -390,9 +390,9 @@ PlayerSettings:
   - m_BuildTarget: VisionOS
     m_Icons:
     - m_Textures:
-      - {fileID: 2800000, guid: 2c59251c29037417cb1f113b30336f24, type: 3}
-      - {fileID: 2800000, guid: 6e05dfdd662e24ddf9c24882ddab2d40, type: 3}
       - {fileID: 2800000, guid: bd3bc9a5cf4d94e3494cb0a30735fc40, type: 3}
+      - {fileID: 2800000, guid: 6e05dfdd662e24ddf9c24882ddab2d40, type: 3}
+      - {fileID: 2800000, guid: 2c59251c29037417cb1f113b30336f24, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 0
